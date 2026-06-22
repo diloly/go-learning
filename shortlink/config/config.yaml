@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  mode: debug          # debug / release / test
+
+database:
+  driver: mysql        # mysql / postgres
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: "123456"
+  dbname: shortlink
+  max_open_conns: 100
+  max_idle_conns: 10
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password: ""
+  db: 0
+
+shortlink:
+  base_url: "http://localhost:8080"   # 短链接前缀（用于生成完整短链）
+  cache_ttl: 3600                     # Redis 缓存过期时间（秒）
