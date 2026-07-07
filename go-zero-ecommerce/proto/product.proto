@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package proto;
+option go_package = "./rpc";
+
+service Product {
+    rpc CreateProduct(CreateProductReq) returns (ProductResp);
+    rpc GetProduct(GetProductReq) returns (ProductResp);
+    rpc ListProducts(ListProductsReq) returns (ListProductsResp);
+    rpc DeductStock(DeductStockReq) returns (DeductStockResp);
+}
+
+message CreateProductReq {
+    string name = 1;
+    string description = 2;
+    double price = 3;
+    int64 stock = 4;
+}
+message ProductResp {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    double price = 4;
+    int64 stock = 5;
+}
+message GetProductReq { int64 product_id = 1; }
+message ListProductsReq { int32 page = 1; int32 page_size = 2; }
+message ListProductsResp {
+    repeated ProductResp products = 1;
+    int64 total = 2;
+}
+message DeductStockReq {
+    int64 product_id = 1;
+    int64 quantity = 2;
+}
+message DeductStockResp { bool success = 1; }

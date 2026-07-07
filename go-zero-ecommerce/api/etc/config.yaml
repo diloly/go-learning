@@ -1,0 +1,8 @@
+Name: gateway.api
+Host: 0.0.0.0
+Port: 8080
+
+Upstreams:
+  /api/user: http://localhost:8001
+  /api/product: http://localhost:8002
+  /api/order: http://localhost:8003

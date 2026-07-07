@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package proto;
+option go_package = "./rpc";
+
+service Order {
+    rpc CreateOrder(CreateOrderReq) returns (CreateOrderResp);
+    rpc GetOrder(GetOrderReq) returns (OrderResp);
+    rpc ListOrders(ListOrdersReq) returns (ListOrdersResp);
+}
+
+message CreateOrderReq {
+    int64 user_id = 1;
+    int64 product_id = 2;
+    int64 quantity = 3;
+    string address = 4;
+}
+message CreateOrderResp {
+    string order_id = 1;
+    string status = 2;
+}
+
+message GetOrderReq { string order_id = 1; }
+message OrderResp {
+    string order_id = 1;
+    int64 user_id = 2;
+    int64 product_id = 3;
+    int64 quantity = 4;
+    double total_price = 5;
+    string status = 6;
+    string address = 7;
+}
+
+message ListOrdersReq { int64 user_id = 1; int32 page = 2; int32 page_size = 3; }
+message ListOrdersResp {
+    repeated OrderResp orders = 1;
+    int64 total = 2;
+}
